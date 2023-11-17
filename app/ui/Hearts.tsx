@@ -1,10 +1,11 @@
 import Heart from "@/app/ui/Heart";
-import {stageSize} from "@/app/lib/stageConf";
 import {useHeartSize} from "@/app/hooks/useHeartSize";
 import {Container} from "@pixi/react";
+import {useFullscreenSize} from "@/app/hooks/useFullscreenSize";
 
 const Hearts = () => {
   const size = useHeartSize(10);
+const stageSize = useFullscreenSize();
   return (
     <Container>
       <Heart
