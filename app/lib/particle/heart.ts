@@ -73,7 +73,9 @@ export class Heart implements Particle {
 
     const pos = this.position;
 
-    const alpha = scale(this.lifespan, this.lifespanBackup, 0.9);
+    const maxOpacity = this.immortal ? 0.9 : 0.8;
+
+    const alpha = scale(this.lifespan, this.lifespanBackup, maxOpacity);
 
     this.size = scale(this.lifespan, this.lifespanBackup, this.sizeBackup);
 
@@ -81,8 +83,8 @@ export class Heart implements Particle {
 
     gh.moveTo(pos.x, pos.y);
 
-    if (this.size > 3) {
-      gh.lineStyle(1, Colors.HEART_LINE_COLOR, 1)
+    if (this.immortal) {
+      gh.lineStyle(1, Colors.HEART_LINE_COLOR, 0.3)
     }
 
     gh.bezierCurveTo(

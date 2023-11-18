@@ -12,5 +12,5 @@ export const useScreenCenterPosWithOffset = (offset: Vec) => {
 }
 
 export const useScreenCenterPosForHuman = () => {
-  return useScreenCenterPosWithOffset(new Vec(-100, -100));
+  return useScreenCenterPosWithOffset(new Vec(-50, -100));
 }

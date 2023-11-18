@@ -4,6 +4,8 @@ export const Colors = {
   HEART_LINE_COLOR: new Color({ r: 251, g: 192, b: 93 }),
   HEART_COLOR: new Color('0xfb5d63'),
   STAGE_BG_COLOR: new Color('0xfbc05e'),
+
+  RED: new Color('0xff0000'),
 }
 
 export const ColorNums = {
