@@ -116,6 +116,7 @@ export class HeartEmitter {
       p.run();
 
       if (p.isDead()) {
+        p.gh.clear();
         this.removeHeart(i)
       }
     }
