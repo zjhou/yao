@@ -1,8 +1,9 @@
 'use client'
 
 import {Stage} from "@pixi/react";
-import Hearts from "@/app/ui/Hearts";
 import {useWindow} from "@/app/hooks/useWindow";
+import Hearts from "@/app/ui/Hearts";
+import {ColorNums, Colors} from "@/app/lib/colors";
 
 export default function Home() {
   const win = useWindow();
@@ -15,9 +16,9 @@ export default function Home() {
         height={height}
         options={{
           resizeTo: win,
-          background: "#fbc05e",
           antialias: true,
           resolution: devicePixelRatio || 1,
+          backgroundColor: ColorNums.STAGE_BG_COLOR
         }}
       >
         <Hearts />
