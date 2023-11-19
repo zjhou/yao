@@ -78,7 +78,9 @@ export class HeartEmitter {
   }
 
   removeHeart(index: number) {
-    this.app.stage.removeChild(this.hearts[index].gh);
+    const gh = this.hearts[index].gh;
+    this.normalParticlesContainer.removeChild(gh);
+    // this.app.stage.removeChild(this.hearts[index].gh);
     this.hearts.splice(index, 1);
   }
 
