@@ -7,9 +7,13 @@ import {ColorNums, Colors} from "@/app/lib/colors";
 
 export default function Home() {
   const win = useWindow();
-  const width = win == undefined ? 0 : win.innerWidth;
-  const height = win == undefined ? 0 : win.innerHeight;
-  const devicePixelRatio = win == undefined ? 0 : win.devicePixelRatio;
+  if (win == undefined) {
+    return null;
+  }
+
+  const width = win.innerWidth;
+  const height =  win.innerHeight;
+  const devicePixelRatio = win.devicePixelRatio;
   return (
       <Stage
         width={width}

@@ -106,6 +106,17 @@ export class HeartEmitter {
     ));
   }
 
+  public destroy() {
+    for (let i = 0; i < this.hearts.length; i++) {
+      const gh = this.hearts[i].gh;
+      gh.clear();
+      this.normalParticlesContainer.removeChild(gh);
+    }
+
+    this.rootParticle.gh.clear();
+    this.rootParticleContainer.removeChild(this.rootParticle.gh);
+  }
+
   run() {
     this.update();
 
