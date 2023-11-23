@@ -1,6 +1,6 @@
 import {useTick, Container, useApp} from "@pixi/react";
 import {useHeartShapeEmitterList} from "@/app/hooks/useHeartShapeEmitterList";
-import {HeartSysConf} from "@/app/lib/particle/HeartSysConf";
+import {HeartSysConf} from "@/app/lib/heartsSystem/HeartSysConf";
 import {useEffect} from "react";
 
 const Hearts = () => {

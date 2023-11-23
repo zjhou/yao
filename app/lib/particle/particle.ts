@@ -1,4 +1,4 @@
-import {Vec} from "@/app/lib/particle/vec";
+import {Vec} from "@/app/lib/vec";
 
 export interface Particle {
   size: number;

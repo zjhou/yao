@@ -1,8 +1,8 @@
 import {Color, Graphics} from "pixi.js";
-import {generateHeartSize, generateValBySec, random, RandomVec, scale, sec} from "@/app/lib/heartUtils";
-import { Vec } from "@/app/lib/particle/vec";
+import { Vec } from "@/app/lib/vec";
 import {Particle} from "@/app/lib/particle/particle";
-import {Colors} from "@/app/lib/colors";
+import {Colors} from "../colors";
+import {generateHeartSize, generateValBySec, random, RandomVec, scale, sec} from "./heartUtils";
 
 export type HeartConfig = {
   lifespan: number;

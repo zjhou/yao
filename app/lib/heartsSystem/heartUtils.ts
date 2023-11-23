@@ -1,4 +1,4 @@
-import {Vec} from "@/app/lib/particle/vec";
+import {Vec} from "@/app/lib/vec";
 
 export const scale = (origin:number, a:number, b:number):number => {
   return origin * b / a;

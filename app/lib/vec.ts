@@ -19,4 +19,8 @@ export class Vec{
   multi(n: number) {
     return new Vec(this.x * n, this.y * n);
   }
+
+  isAtEdge() {
+    return this.x === 0 || this.y === 0;
+  }
 }

@@ -4,6 +4,7 @@ import {Stage} from "@pixi/react";
 import {useWindow} from "@/app/hooks/useWindow";
 import Hearts from "@/app/ui/Hearts";
 import {ColorNums, Colors} from "@/app/lib/colors";
+import Counter from "@/app/ui/Counter";
 
 export default function Home() {
   const win = useWindow();
@@ -26,6 +27,7 @@ export default function Home() {
         }}
       >
         <Hearts />
+        <Counter />
       </Stage>
   );
 }

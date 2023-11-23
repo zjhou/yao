@@ -1,10 +1,10 @@
 import {Container, Graphics} from "pixi.js";
-import {Heart} from "@/app/lib/particle/heart";
+import {Heart} from "./heart";
 import { Application } from "pixi.js";
-import {Vec} from "@/app/lib/particle/vec";
-import {generateHeartPos, generateValBySec, sec} from "@/app/lib/heartUtils";
-import {Colors} from "@/app/lib/colors";
-import {HeartSysConf} from "@/app/lib/particle/HeartSysConf";
+import {Vec} from "@/app/lib/vec";
+import {generateHeartPos, generateValBySec, sec} from "./heartUtils";
+import {Colors} from "../colors";
+import {HeartSysConf} from "./HeartSysConf";
 
 type EmitterConfig = {
   position: Vec;

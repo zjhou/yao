@@ -1,7 +1,7 @@
 import {useApp} from "@pixi/react";
-import {HeartEmitter} from "@/app/lib/particle/heartEmitter";
+import {HeartEmitter} from "@/app/lib/heartsSystem/heartEmitter";
 import {useScreenCenterPosForHuman} from "@/app/hooks/useScreenCenterPos";
-import {generateScaledHeartPos} from "@/app/lib/heartUtils";
+import {generateScaledHeartPos} from "@/app/lib/heartsSystem/heartUtils";
 
 export const useHeartShapeEmitterList = (count: number) => {
   const app = useApp();
