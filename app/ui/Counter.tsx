@@ -1,12 +1,13 @@
 import {Text} from "@pixi/react";
 import {useCounterPos} from "@/app/hooks/useCounterPos";
 import {useDays} from "@/app/hooks/useDays";
-import {CounterConf} from "@/app/lib/counter/CounterConf";
-import {useRef} from "react";
+import {useContext, useRef} from "react";
+import {ThemeContext} from "@/app/context";
 
 const Counter = () => {
   const pos = useCounterPos();
   const days = useDays();
+  const theme = useContext(ThemeContext);
 
   if (pos.isAtEdge()) {
     return null;
@@ -15,7 +16,7 @@ const Counter = () => {
   return (
     <Text
       text={days}
-      style={CounterConf.textStyle}
+      style={theme.COUNTER_STYLE}
       x={pos.x}
       y={pos.y}
     />

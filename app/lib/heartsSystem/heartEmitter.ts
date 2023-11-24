@@ -1,9 +1,8 @@
-import {Container, Graphics} from "pixi.js";
+import {Color, Container, Graphics} from "pixi.js";
 import {Heart} from "./heart";
 import { Application } from "pixi.js";
 import {Vec} from "@/app/lib/vec";
 import {generateHeartPos, generateValBySec, sec} from "./heartUtils";
-import {Colors} from "../colors";
 import {HeartSysConf} from "./HeartSysConf";
 
 type EmitterConfig = {
@@ -11,6 +10,8 @@ type EmitterConfig = {
   refPos: Vec;
   index: number;
   app: Application;
+  color: number | Color;
+  lineColor: number | Color;
   size?: number;
 }
 
@@ -19,6 +20,8 @@ export class HeartEmitter {
     this.origin = config.position.copy();
     this.index = config.index;
     this.size = config.size || 10;
+    this.color = config.color;
+    this.lineColor = config.lineColor;
 
     // 参照点
     this.refPos = config.refPos;
@@ -40,6 +43,8 @@ export class HeartEmitter {
   normalParticlesContainer: Container;
   app: Application;
   size: number;
+  color: number | Color;
+  lineColor: number | Color;
   hearts: Heart[] = [];
   index: number;
   public origin: Vec;
@@ -61,7 +66,8 @@ export class HeartEmitter {
       immortal,
       lifespan: HeartSysConf.PARTICLE_LIFESPAN,
       position: this.origin,
-      color: Colors.HEART_COLOR,
+      color: this.color,
+      lineColor: this.lineColor,
       size: this.getSize(),
     });
 

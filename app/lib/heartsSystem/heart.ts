@@ -1,8 +1,7 @@
 import {Color, Graphics} from "pixi.js";
 import { Vec } from "@/app/lib/vec";
 import {Particle} from "@/app/lib/particle/particle";
-import {Colors} from "../colors";
-import {generateHeartSize, generateValBySec, random, RandomVec, scale, sec} from "./heartUtils";
+import {random, RandomVec, scale, sec} from "./heartUtils";
 
 export type HeartConfig = {
   lifespan: number;
@@ -10,6 +9,7 @@ export type HeartConfig = {
   position: Vec;
   velocity?: Vec;
   color: Color | number;
+  lineColor: Color | number;
   gh: Graphics;
   immortal: boolean;
 }
@@ -22,6 +22,7 @@ export class Heart implements Particle {
     this.velocity = config.velocity || RandomVec();
     this.acceleration = new Vec(0, 0.04);
     this.color = config.color;
+    this.lineColor = config.lineColor;
     this.lifespanBackup = this.lifespan;
     this.sizeBackup = this.size;
     this.birthSec= sec();
@@ -32,6 +33,7 @@ export class Heart implements Particle {
   immortal: boolean;
   id: number;
   color: Color | number;
+  lineColor: Color | number;
   size: number;
   sizeBackup: number;
   birthSec: number;
@@ -60,7 +62,6 @@ export class Heart implements Particle {
     this.velocity.add(this.acceleration);
     this.position = this.position.sub(this.velocity);
     this.lifespan -= 2;
-
   }
 
   getRealAge() {
@@ -84,7 +85,7 @@ export class Heart implements Particle {
     gh.moveTo(pos.x, pos.y);
 
     if (this.immortal) {
-      gh.lineStyle(1, Colors.HEART_LINE_COLOR, 0.3)
+      gh.lineStyle(1, this.lineColor, 0.3)
     }
 
     gh.bezierCurveTo(
