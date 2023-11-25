@@ -19,7 +19,7 @@ export const useFullscreenSize = () => {
         return () => {
             window.removeEventListener('resize', resize);
         }
-    }, []);
+    }, [win]);
 
     return size;
 }

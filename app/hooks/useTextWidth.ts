@@ -1,21 +1,22 @@
 import {TextStyle, Text} from "pixi.js";
 import {useEffect, useState} from "react";
 import {useApp} from "@pixi/react";
+import {CounterConf} from "@/app/lib/counter/CounterConf";
 
 export const useTextWidth = (text: string, style: TextStyle) => {
   const [textWidth, setTextWidth] = useState(0);
   const app = useApp();
 
   useEffect(() => {
-    const text = new Text('Your text here', style);
-    app.stage.addChild(text);
+    const t = new Text(text, style);
+    app.stage.addChild(t);
 
     // 获取文本的宽度
-    const textWidth = text.width;
+    const textWidth = t.width;
     setTextWidth(textWidth);
 
     // 移除文本
-    app.stage.removeChild(text);
+    app.stage.removeChild(t);
   }, []);
 
   return textWidth;

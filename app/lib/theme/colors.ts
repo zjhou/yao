@@ -8,6 +8,7 @@ const ColorNums = {
 }
 
 export class Classic implements Theme {
+  NAME = "Classic";
   HEART_LINE_COLOR = ColorNums.HEART_LINE_COLOR;
   HEART_COLOR = ColorNums.HEART_COLOR;
   STAGE_BG_COLOR = ColorNums.STAGE_BG_COLOR;
@@ -20,25 +21,27 @@ export class Classic implements Theme {
 }
 
 export class Cream implements Theme {
+  NAME = "Cream";
   HEART_LINE_COLOR = 0xBAD7DF;
-  HEART_COLOR = 0x99DDCC;
-  STAGE_BG_COLOR = 0xFFE2E2;
+  HEART_COLOR = 0xFFE2E2;
+  STAGE_BG_COLOR = 0x99DDCC;
   COUNTER_STYLE = new TextStyle({
     fontFamily: "monospace",
     fontSize: 16,
-    fill: [0x99DDCC],
+    fill: [0xF6F6F6],
     align: "center",
   });
 }
 
 export class Sun implements Theme {
+  NAME = "Sun";
   HEART_LINE_COLOR = 0xFBC05E;
-  HEART_COLOR = 0xE74646;
-  STAGE_BG_COLOR = 0xFA9884;
+  HEART_COLOR = 0xFF8080;
+  STAGE_BG_COLOR = 0xFFCF96;
   COUNTER_STYLE = new TextStyle({
     fontFamily: "monospace",
     fontSize: 16,
-    fill: [0xE74646],
+    fill: [0xFF8080],
     align: "center",
   });
 }

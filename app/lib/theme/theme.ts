@@ -5,4 +5,5 @@ export interface Theme {
   HEART_COLOR: number | Color,
   STAGE_BG_COLOR: number | Color,
   COUNTER_STYLE: TextStyle
+  NAME: string,
 }

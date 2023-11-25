@@ -43,13 +43,13 @@ export class HeartEmitter {
   normalParticlesContainer: Container;
   app: Application;
   size: number;
-  color: number | Color;
-  lineColor: number | Color;
+  public color: number | Color;
+  public lineColor: number | Color;
   hearts: Heart[] = [];
   index: number;
   public origin: Vec;
+  public refPos: Vec;
   sec: number;
-  refPos: Vec;
 
   getSecPassed() {
     return sec() - this.sec;
@@ -90,7 +90,7 @@ export class HeartEmitter {
     this.hearts.splice(index, 1);
   }
 
-  updatePos(position: Vec) {
+  public updatePos(position: Vec) {
     this.origin = position;
     this.rootParticle.position = position;
   }
