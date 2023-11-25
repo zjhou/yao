@@ -1,13 +1,11 @@
-import {Color, Container, Graphics} from "pixi.js";
+import {Application, Color, Container, Graphics} from "pixi.js";
 import {Heart} from "./heart";
-import { Application } from "pixi.js";
 import {Vec} from "@/app/lib/vec";
-import {generateHeartPos, generateValBySec, sec} from "./heartUtils";
+import {generateHeartPos, generateScaledHeartPos, generateValBySec, sec} from "./heartUtils";
 import {HeartSysConf} from "./HeartSysConf";
 
 type EmitterConfig = {
   position: Vec;
-  refPos: Vec;
   index: number;
   app: Application;
   color: number | Color;
@@ -24,7 +22,6 @@ export class HeartEmitter {
     this.lineColor = config.lineColor;
 
     // 参照点
-    this.refPos = config.refPos;
     this.sec = sec();
     this.app = config.app;
     this.hearts = []
@@ -35,10 +32,10 @@ export class HeartEmitter {
     this.app.stage.addChild(this.normalParticlesContainer);
     this.app.stage.addChild(this.rootParticleContainer);
 
-    this.rootParticle = this.addHeart(true);
+    this.generateRootHearts();
   }
 
-  rootParticle: Heart;
+  rootHearts: Heart[] = [];
   rootParticleContainer: Container;
   normalParticlesContainer: Container;
   app: Application;
@@ -48,21 +45,40 @@ export class HeartEmitter {
   hearts: Heart[] = [];
   index: number;
   public origin: Vec;
-  public refPos: Vec;
   sec: number;
+
+  generateRootHearts() {
+    for (let i = 0; i < HeartSysConf.ROOT_HEART_COUNT; i++) {
+      const pos = generateScaledHeartPos(i);
+      const result = this.addHeart(true, pos.add(this.origin))
+      this.rootHearts.push(result);
+    }
+  }
 
   public setColor(color: number | Color) {
     this.color = color;
-    this.rootParticle.color = color;
   }
 
   getSecPassed() {
     return sec() - this.sec;
   }
 
-  addHeart(immortal = false) {
+  getContainer(immortal: boolean) {
+    return  immortal ? this.rootParticleContainer : this.normalParticlesContainer;
+  }
+
+  getRootHeartPos(i: number) {
+    return this.rootHearts[i].position;
+  }
+
+  getRandRootHeartPos() {
+    const i = Math.floor(Math.random() * this.rootHearts.length);
+    return this.getRootHeartPos(i);
+  }
+
+  addHeart(immortal = false, position = this.origin) {
     const gh = new Graphics();
-    const container = immortal ? this.rootParticleContainer : this.normalParticlesContainer;
+    const container = this.getContainer(immortal);
 
     container.addChild(gh);
 
@@ -70,7 +86,7 @@ export class HeartEmitter {
       gh,
       immortal,
       lifespan: HeartSysConf.PARTICLE_LIFESPAN,
-      position: this.origin,
+      position: immortal ? position : this.getRandRootHeartPos(),
       color: this.color,
       lineColor: this.lineColor,
       size: this.getSize(),
@@ -89,20 +105,16 @@ export class HeartEmitter {
   }
 
   removeHeart(index: number) {
-    const gh = this.hearts[index].gh;
-    this.normalParticlesContainer.removeChild(gh);
-    // this.app.stage.removeChild(this.hearts[index].gh);
+    const heart = this.hearts[index];
+    const container = this.getContainer(heart.immortal);
+    const gh = heart.gh;
+    gh.clear();
+    container.removeChild(gh);
     this.hearts.splice(index, 1);
   }
 
-  public updatePos(position: Vec) {
-    this.origin = position;
-    this.rootParticle.position = position;
-  }
-
-  getHeartPos(scale: number) {
-    const i = this.index || 0;
-    const pos = this.refPos;
+  getHeartPos(scale: number, i = this.index) {
+    const pos = this.origin;
     const { x, y } = generateHeartPos(i);
     const scaledX = x * scale + 50 + (pos?.x || 0);
     const scaledY = y * scale + 50 + (pos?.y || 0);
@@ -111,28 +123,34 @@ export class HeartEmitter {
   };
 
   update() {
-    // 星形缩放
-    this.updatePos(this.getHeartPos(
-      generateValBySec(this.getSecPassed(), 50, 60)
-    ));
+    for(let i = 0; i < this.rootHearts.length; i++) {
+      const heart = this.rootHearts[i];
+      heart.position = this.getHeartPos(
+        generateValBySec(this.getSecPassed(), 50, 60),
+        i
+      );
+    }
   }
 
   public destroy() {
     for (let i = 0; i < this.hearts.length; i++) {
-      const gh = this.hearts[i].gh;
-      gh.clear();
-      this.normalParticlesContainer.removeChild(gh);
+      this.removeHeart(i)
     }
+    this.hearts = [];
+    this.rootHearts = [];
+  }
 
-    this.rootParticle.gh.clear();
-    this.rootParticleContainer.removeChild(this.rootParticle.gh);
+  addHearts(count: number) {
+    for(let i = 0; i < count; i++) {
+      this.addHeart();
+    }
   }
 
   run() {
     this.update();
 
     if (this.hearts.length < HeartSysConf.PARTICLES) {
-      this.addHeart();
+      this.addHearts(HeartSysConf.ROOT_HEART_COUNT)
     }
 
     for (let i = 0; i < this.hearts.length; i++) {
@@ -140,7 +158,6 @@ export class HeartEmitter {
       p.run();
 
       if (p.isDead()) {
-        p.gh.clear();
         this.removeHeart(i)
       }
     }

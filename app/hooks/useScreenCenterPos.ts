@@ -9,9 +9,17 @@ export const useScreenCenterPos = () => {
 export const useScreenCenterPosWithOffset = (offset: Vec) => {
   const pos = useScreenCenterPos();
   if (pos.x === 0 && pos.y === 0) {
-    return pos;
+    return {
+      ready: false,
+      pos
+    };
   }
-  return pos.add(offset);
+
+  console.log(pos);
+  return {
+    pos: pos.add(offset),
+    ready: true,
+  }
 }
 
 export const useScreenCenterPosForHuman = () => {

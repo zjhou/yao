@@ -4,7 +4,7 @@ import {HeartSysConf} from "@/app/lib/heartsSystem/HeartSysConf";
 import {useEffect} from "react";
 
 const Hearts = () => {
-  const emitterList = useHeartShapeEmitterList(HeartSysConf.EMITTERS);
+  const emitterList = useHeartShapeEmitterList(HeartSysConf.EMITTERS, HeartSysConf.HEART_DIST);
 
   useTick(() => {
     if (emitterList.length == 0) {
