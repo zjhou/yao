@@ -51,6 +51,11 @@ export class HeartEmitter {
   public refPos: Vec;
   sec: number;
 
+  public setColor(color: number | Color) {
+    this.color = color;
+    this.rootParticle.color = color;
+  }
+
   getSecPassed() {
     return sec() - this.sec;
   }

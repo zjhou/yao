@@ -29,7 +29,7 @@ export const useHeartShapeEmitterList = (count: number) => {
 
   useEffect(() => {
     emitterList.forEach((emitter) => {
-      emitter.color = theme.HEART_COLOR;
+      emitter.setColor(theme.HEART_COLOR);
     });
   }, [theme.NAME]);
 

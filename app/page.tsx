@@ -3,7 +3,7 @@
 import {Stage} from "@pixi/react";
 import {useWindow} from "@/app/hooks/useWindow";
 import Hearts from "@/app/ui/Hearts";
-import {Classic, Sun} from "@/app/lib/theme/colors";
+import {Classic, Cream, Sun} from "@/app/lib/theme/colors";
 import Counter from "@/app/ui/Counter";
 import {ThemeContext} from "@/app/context";
 import Bg from "@/app/ui/Bg";
