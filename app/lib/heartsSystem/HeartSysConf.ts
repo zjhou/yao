@@ -1,6 +1,6 @@
 export const HeartSysConf = {
   EMITTERS: 1,
-  PARTICLES: 5000,
+  PARTICLES: 600,
 
   PARTICLE_LIFESPAN: 100,
   ROOT_HEART_COUNT: 44,

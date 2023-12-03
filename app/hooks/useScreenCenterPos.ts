@@ -1,5 +1,6 @@
 import {Vec} from "@/app/lib/vec";
 import {useFullscreenSize} from "@/app/hooks/useFullscreenSize";
+import {Container} from "pixi.js";
 
 export const useScreenCenterPos = () => {
     const { width, height } = useFullscreenSize();
@@ -24,4 +25,12 @@ export const useScreenCenterPosWithOffset = (offset: Vec) => {
 
 export const useScreenCenterPosForHuman = () => {
   return useScreenCenterPosWithOffset(new Vec(-50, -100));
+}
+
+export const useTVScreenCenterPos = (container: Container) => {
+  const pos = new Vec(container.x, container.y);
+  return {
+    pos: pos.sub(new Vec(10, 0)),
+    ready: true
+  }
 }

@@ -74,7 +74,7 @@ export class Heart implements Particle {
 
     const pos = this.position;
 
-    const maxOpacity = this.immortal ? 0.9 : 0.8;
+    const maxOpacity = this.immortal ? 0.8 : 0.7;
 
     const alpha = scale(this.lifespan, this.lifespanBackup, maxOpacity);
 

@@ -10,6 +10,7 @@ type EmitterConfig = {
   app: Application;
   color: number | Color;
   lineColor: number | Color;
+  container?: Container;
   size?: number;
 }
 
@@ -17,25 +18,25 @@ export class HeartEmitter {
   constructor(config: EmitterConfig) {
     this.origin = config.position.copy();
     this.index = config.index;
-    this.size = config.size || 10;
+    this.size = config.size || 20;
     this.color = config.color;
     this.lineColor = config.lineColor;
-
     // 参照点
     this.sec = sec();
     this.app = config.app;
     this.hearts = []
-
+    this.parentContainer = config.container || this.app.stage;
     this.normalParticlesContainer = new Container();
     this.rootParticleContainer = new Container();
 
-    this.app.stage.addChild(this.normalParticlesContainer);
-    this.app.stage.addChild(this.rootParticleContainer);
+    this.parentContainer.addChild(this.normalParticlesContainer);
+    this.parentContainer.addChild(this.rootParticleContainer);
 
     this.generateRootHearts();
   }
 
   rootHearts: Heart[] = [];
+  parentContainer: Container;
   rootParticleContainer: Container;
   normalParticlesContainer: Container;
   app: Application;
@@ -100,7 +101,7 @@ export class HeartEmitter {
 
   getSize() {
     return generateValBySec(
-      this.getSecPassed(), 10, 15
+      this.getSecPassed(), 8, 10
     );
   }
 
@@ -116,8 +117,8 @@ export class HeartEmitter {
   getHeartPos(scale: number, i = this.index) {
     const pos = this.origin;
     const { x, y } = generateHeartPos(i);
-    const scaledX = x * scale + 50 + (pos?.x || 0);
-    const scaledY = y * scale + 50 + (pos?.y || 0);
+    const scaledX = x * scale + this.size + (pos?.x || 0);
+    const scaledY = y * scale + this.size + (pos?.y || 0);
 
     return new Vec(scaledX, scaledY)
   };
@@ -126,7 +127,7 @@ export class HeartEmitter {
     for(let i = 0; i < this.rootHearts.length; i++) {
       const heart = this.rootHearts[i];
       heart.position = this.getHeartPos(
-        generateValBySec(this.getSecPassed(), 50, 60),
+        generateValBySec(this.getSecPassed(), this.size, this.size + 10),
         i
       );
     }

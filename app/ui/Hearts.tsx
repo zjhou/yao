@@ -3,8 +3,8 @@ import {useHeartShapeEmitterList} from "@/app/hooks/useHeartShapeEmitterList";
 import {HeartSysConf} from "@/app/lib/heartsSystem/HeartSysConf";
 import {useEffect} from "react";
 
-const Hearts = () => {
-  const emitterList = useHeartShapeEmitterList(HeartSysConf.EMITTERS, HeartSysConf.HEART_DIST);
+const Hearts = ({ container } : any) => {
+  const emitterList = useHeartShapeEmitterList(HeartSysConf.EMITTERS, HeartSysConf.HEART_DIST, container);
 
   useTick(() => {
     if (emitterList.length == 0) {
@@ -25,6 +25,7 @@ const Hearts = () => {
   }, [emitterList]);
 
   if (emitterList.length == 0) {
+    console.log("hearts null")
     return null;
   }
 

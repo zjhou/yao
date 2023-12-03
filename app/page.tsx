@@ -9,6 +9,9 @@ import {ThemeContext} from "@/app/context";
 import Bg from "@/app/ui/Bg";
 import {Theme} from "@/app/lib/theme/theme";
 import {useEffect, useState} from "react";
+import Tv from "@/app/ui/Tv";
+import {Container} from "pixi.js";
+import Channel from "@/app/ui/Channel";
 
 export default function Home() {
   const win = useWindow();
@@ -20,6 +23,7 @@ export default function Home() {
   }, []);
 
   if (win == undefined) {
+    console.log("window obj null")
     return null;
   }
 
@@ -41,8 +45,16 @@ export default function Home() {
             width={width}
             height={height}
           />
-          <Hearts />
-          <Counter />
+          <Tv>
+            {(screenContainer: Container) => {
+              if (screenContainer == null) {
+                console.log("screenContainer null")
+                return null;
+              }
+
+              return <Channel container={screenContainer} index={0} />
+            }}
+          </Tv>
         </ThemeContext.Provider>
       </Stage>
   );

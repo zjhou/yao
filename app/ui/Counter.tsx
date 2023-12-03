@@ -4,21 +4,21 @@ import {useDays} from "@/app/hooks/useDays";
 import {useContext, useRef} from "react";
 import {ThemeContext} from "@/app/context";
 
-const Counter = () => {
-  const pos = useCounterPos();
+type CounterProps = {
+  x: number
+  y: number
+}
+const Counter = (props: CounterProps) => {
   const days = useDays();
   const theme = useContext(ThemeContext);
 
-  if (pos.isAtEdge()) {
-    return null;
-  }
-
   return (
     <Text
+      alpha={0.9}
       text={days}
       style={theme.COUNTER_STYLE}
-      x={pos.x}
-      y={pos.y}
+      x={props.x}
+      y={props.y}
     />
   );
 }

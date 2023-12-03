@@ -1,18 +1,17 @@
 import {useApp} from "@pixi/react";
 import {HeartEmitter} from "@/app/lib/heartsSystem/heartEmitter";
-import {useScreenCenterPosForHuman} from "@/app/hooks/useScreenCenterPos";
+import {useScreenCenterPosForHuman, useTVScreenCenterPos} from "@/app/hooks/useScreenCenterPos";
 import {generateScaledHeartPos} from "@/app/lib/heartsSystem/heartUtils";
 import {useContext, useEffect, useState} from "react";
 import {ThemeContext} from "@/app/context";
 import {Vec} from "@/app/lib/vec";
+import {Container} from "pixi.js";
 
-export const useHeartShapeEmitterList = (count: number, offset: number) => {
+export const useHeartShapeEmitterList = (count: number, offset: number, container: Container) => {
   const app = useApp();
-  const {pos: refPos, ready } = useScreenCenterPosForHuman();
+  const {pos: refPos, ready } = useTVScreenCenterPos(container);
   const [emitterList, setEmitterList] = useState<HeartEmitter[]>([]);
   const theme = useContext(ThemeContext);
-
-  console.log("pos ready", ready);
 
   const getOffsetByEmitterIndex = (index: number) => {
     const offsetValue = offset * index;
@@ -26,6 +25,7 @@ export const useHeartShapeEmitterList = (count: number, offset: number) => {
       const pos = generateScaledHeartPos(i).add(getOffsetByEmitterIndex(i));
       newEmitterList.push(new HeartEmitter({
         position: pos,
+        container: container,
         index: i,
         color: theme.HEART_COLOR,
         lineColor: theme.HEART_LINE_COLOR,
