@@ -10,7 +10,7 @@ import Bg from "@/app/ui/Bg";
 import {Theme} from "@/app/lib/theme/theme";
 import {useEffect, useState} from "react";
 import Tv from "@/app/ui/Tv";
-import {Container} from "pixi.js";
+import {Container, Sprite} from "pixi.js";
 import Channel from "@/app/ui/Channel";
 
 export default function Home() {
@@ -46,13 +46,15 @@ export default function Home() {
             height={height}
           />
           <Tv>
-            {(screenContainer: Container) => {
-              if (screenContainer == null) {
-                console.log("screenContainer null")
-                return null;
-              }
-
-              return <Channel container={screenContainer} index={0} />
+            {(screenContainer: Container, screen: Sprite) => {
+              console.log("screenContainer ready")
+              return (
+                <Channel
+                  container={screenContainer}
+                  screen={screen}
+                  index={1}
+                />
+              )
             }}
           </Tv>
         </ThemeContext.Provider>
