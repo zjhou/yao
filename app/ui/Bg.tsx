@@ -13,9 +13,10 @@ const Bg = (props: BgProps) => {
   const size = Math.max(props.width, props.height);
 
   const y = (props.height - size) / 2;
+  const x = (props.width - size) / 2;
   return (
     <Sprite
-      x={0}
+      x={x}
       y={y}
       texture={texture}
       width={size}

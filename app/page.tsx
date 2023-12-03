@@ -47,18 +47,18 @@ export default function Home() {
             width={size.width}
             height={size.height}
           />
-          <Tv>
-            {(screenContainer: Container, screen: Sprite) => {
-              console.log("screenContainer ready")
-              return (
-                <Channel
-                  container={screenContainer}
-                  screen={screen}
-                  index={1}
-                />
-              )
-            }}
-          </Tv>
+          {/*<Tv>*/}
+          {/*  {(screenContainer: Container, screen: Sprite) => {*/}
+          {/*    console.log("screenContainer ready")*/}
+          {/*    return (*/}
+          {/*      <Channel*/}
+          {/*        container={screenContainer}*/}
+          {/*        screen={screen}*/}
+          {/*        index={1}*/}
+          {/*      />*/}
+          {/*    )*/}
+          {/*  }}*/}
+          {/*</Tv>*/}
         </ThemeContext.Provider>
       </Stage>
   );
