@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Container, Sprite} from "@pixi/react";
 import {useScreenCenterPosForHuman} from "@/app/hooks/useScreenCenterPos";
 import {Container as ContainerType} from "pixi.js";
@@ -39,7 +39,7 @@ const Tv = ({ children }: any) => {
         image="images/tv-glass.png"
         scale={{ x: 0.9, y: 0.9 }}
         anchor={{ x: 0.41, y:0.5 }}
-        alpha={0.4}
+        alpha={0.5}
         x={0}
         y={0}
       />
