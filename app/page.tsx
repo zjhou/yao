@@ -12,9 +12,11 @@ import {useEffect, useState} from "react";
 import Tv from "@/app/ui/Tv";
 import {Container, Sprite} from "pixi.js";
 import Channel from "@/app/ui/Channel";
+import {useFullscreenSize} from "@/app/hooks/useFullscreenSize";
 
 export default function Home() {
   const win = useWindow();
+  const size = useFullscreenSize();
   const [theme, setTheme] = useState<Theme>(new Classic());
 
   useEffect(() => {
@@ -42,8 +44,8 @@ export default function Home() {
       >
         <ThemeContext.Provider value={theme}>
           <Bg
-            width={width}
-            height={height}
+            width={size.width}
+            height={size.height}
           />
           <Tv>
             {(screenContainer: Container, screen: Sprite) => {

@@ -1,23 +1,25 @@
-import {Graphics, useApp} from "@pixi/react";
-import {Color, Graphics as gType} from "pixi.js";
+import {Graphics, Sprite, useApp} from "@pixi/react";
+import {Color, Graphics as gType, Texture} from "pixi.js";
 import {useTheme} from "@/app/hooks/useTheme";
 
 type BgProps = {
   width: number;
   height: number;
 }
+// noinspection JSSuspiciousNameCombination
 const Bg = (props: BgProps) => {
-  const theme = useTheme();
-  const draw = (g: gType) => {
-    g.clear();
-    g.beginFill(theme.STAGE_BG_COLOR);
-    g.drawRect(0, 0, props.width, props.height);
-    g.endFill();
-  };
+  const texture = Texture.from("images/bg.png");
 
+  const size = Math.max(props.width, props.height);
+
+  const y = (props.height - size) / 2;
   return (
-    <Graphics
-      draw={draw}
+    <Sprite
+      x={0}
+      y={y}
+      texture={texture}
+      width={size}
+      height={size}
     />
   )
 }
