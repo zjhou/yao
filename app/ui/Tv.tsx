@@ -1,55 +1,26 @@
 import React from "react";
-import {Container, Sprite} from "@pixi/react";
-import {useScreenCenterPosForHuman} from "@/app/hooks/useScreenCenterPos";
+import {Container} from "@pixi/react";
 import {Container as ContainerType, Sprite as SpriteType} from "pixi.js";
+import Channel from "@/app/ui/Channel";
+import {GlassInfo} from "@/app/ui/Bg";
+import {useTvScreen} from "@/app/hooks/useTvScreen";
 
-const Tv = ({ children }: any) => {
+type TvProps = {
+  glass: SpriteType
+  glassInfo: GlassInfo
+}
 
-  const {pos: refPos, ready } = useScreenCenterPosForHuman();
-  const [container, setContainer] = React.useState<ContainerType>();
-  const [screenSprite, setScreenSprite] = React.useState<SpriteType>();
-
-  if (!ready) {
-    return null;
+const Tv = ({ glass, glassInfo }: TvProps) => {
+  const screen = useTvScreen();
+  if (screen.width == 0 || screen.height == 0) {
+    return;
   }
-
   return (
-    <Container
-      x={refPos.x}
-      y={refPos.y}
-    >
-      <Sprite
-        image="images/tv-bg.png"
-        scale={{ x: 0.9, y: 0.9 }}
-        anchor={{ x: 0.41, y:0.5 }}
-        x={0}
-        y={0}
+      <Channel
+        screen={glass}
+        screenInfo={glassInfo}
+        index={0}
       />
-      <Container
-        ref={(ref) => {
-          if (ref !== null) {
-            setContainer(ref);
-          }
-        }}
-      >
-        {
-          (container && screenSprite) ? children(container, screenSprite) : null
-        }
-        <Sprite
-          ref={(ref) => {
-            if (ref !== null) {
-              setScreenSprite(ref);
-            }
-          }}
-          image="images/tv-glass.png"
-          scale={{ x: 0.9, y: 0.9 }}
-          anchor={{ x: 0.41, y:0.5 }}
-          alpha={0.8}
-          x={0}
-          y={0}
-        />
-      </Container>
-    </Container>
   )
 }
 

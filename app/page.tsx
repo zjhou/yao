@@ -2,16 +2,12 @@
 
 import {Stage} from "@pixi/react";
 import {useWindow} from "@/app/hooks/useWindow";
-import Hearts from "@/app/ui/Hearts";
 import {Classic, Cream, Sun} from "@/app/lib/theme/colors";
-import Counter from "@/app/ui/Counter";
 import {ThemeContext} from "@/app/context";
 import Bg from "@/app/ui/Bg";
 import {Theme} from "@/app/lib/theme/theme";
 import {useEffect, useState} from "react";
 import Tv from "@/app/ui/Tv";
-import {Container, Sprite} from "pixi.js";
-import Channel from "@/app/ui/Channel";
 import {useFullscreenSize} from "@/app/hooks/useFullscreenSize";
 
 export default function Home() {
@@ -25,7 +21,6 @@ export default function Home() {
   }, []);
 
   if (win == undefined) {
-    console.log("window obj null")
     return null;
   }
 
@@ -46,19 +41,13 @@ export default function Home() {
           <Bg
             width={size.width}
             height={size.height}
-          />
-          {/*<Tv>*/}
-          {/*  {(screenContainer: Container, screen: Sprite) => {*/}
-          {/*    console.log("screenContainer ready")*/}
-          {/*    return (*/}
-          {/*      <Channel*/}
-          {/*        container={screenContainer}*/}
-          {/*        screen={screen}*/}
-          {/*        index={1}*/}
-          {/*      />*/}
-          {/*    )*/}
-          {/*  }}*/}
-          {/*</Tv>*/}
+          >
+            {(glass, glassInfo) => {
+                return (
+                  <Tv glass={glass} glassInfo={glassInfo} />
+                )
+            }}
+          </Bg>
         </ThemeContext.Provider>
       </Stage>
   );
