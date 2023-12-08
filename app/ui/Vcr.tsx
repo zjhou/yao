@@ -52,8 +52,6 @@ const Vcr = ({ screen }: VcrProps) => {
       height={scaledSize.height}
       scale={scaledSize.height / videoTexture.height}
       texture={videoTexture}
-      mask={screen}
-      alpha={1}
     />
   )
 }

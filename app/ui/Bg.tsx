@@ -1,5 +1,5 @@
-import {Container, Sprite} from "@pixi/react";
-import {BLEND_MODES, Sprite as SpriteType, Texture} from "pixi.js";
+import {Container, Sprite, Graphics} from "@pixi/react";
+import {BLEND_MODES, Sprite as SpriteType, Texture, Graphics as G} from "pixi.js";
 import React, {ReactComponentElement} from "react";
 import {Vec} from "@/app/lib/vec";
 import {ScreenContext} from "@/app/context";
@@ -19,9 +19,11 @@ type BgProps = {
 const Bg = (props: BgProps) => {
   const texture = Texture.from("images/bg.png");
   const glass = Texture.from("images/glass.png");
+  const screen = Texture.from("images/screen.png");
 
   const size = Math.max(props.width, props.height);
   const [screenSprite, setScreenSprite] = React.useState<SpriteType>();
+  const [screenRect, setScreenRect] = React.useState<G>();
 
   const y = (props.height - size) / 2;
   const x = (props.width - size) / 2;
@@ -50,22 +52,36 @@ const Bg = (props: BgProps) => {
       <ScreenContext.Provider
         value={glassInfo}
       >
-        {
-          (screenSprite && !glassInfo.position.isAtEdge())? props.children(screenSprite, glassInfo) : null
-        }
+        {(glassInfo.position.isAtEdge()) ? null : (
+          <>
+            <Container
+              mask={screenSprite}
+            >
+              <Sprite
+                ref={(ref) => {
+                  if (ref !== null) {
+                    setScreenSprite(ref);
+                  }
+                }}
+                x={glassInfo.position.x}
+                y={glassInfo.position.y}
+                texture={glass}
+                width={glassInfo.width}
+                height={glassInfo.height}
+              />
+              {screenSprite && props.children(screenSprite, glassInfo)}
+            </Container>
+            <Sprite
+              x={glassInfo.position.x}
+              y={glassInfo.position.y}
+              texture={screen}
+              width={glassInfo.width}
+              height={glassInfo.height}
+              alpha={0.5}
+            />
+          </>
+        )}
       </ScreenContext.Provider>
-      <Sprite
-        ref={(ref) => {
-          if (ref !== null) {
-            setScreenSprite(ref);
-          }
-        }}
-        x={glassInfo.position.x}
-        y={glassInfo.position.y}
-        texture={glass}
-        width={glassInfo.width}
-        height={glassInfo.height}
-      />
     </Container>
   )
 }

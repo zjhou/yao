@@ -15,6 +15,7 @@ const Tv = ({ glass, glassInfo }: TvProps) => {
   if (screen.width == 0 || screen.height == 0) {
     return;
   }
+  console.log("tv")
   return (
       <Channel
         screen={glass}
