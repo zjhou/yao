@@ -1,5 +1,5 @@
 import {Container, Sprite, Graphics} from "@pixi/react";
-import {BLEND_MODES, Sprite as SpriteType, Texture, Graphics as G} from "pixi.js";
+import {BLEND_MODES, Sprite as SpriteType, Texture, Graphics as G, AssetsBundle} from "pixi.js";
 import React, {ReactComponentElement} from "react";
 import {Vec} from "@/app/lib/vec";
 import {ScreenContext} from "@/app/context";
@@ -14,13 +14,12 @@ export type GlassInfo = {
 type BgProps = {
   width: number;
   height: number;
+  bundle: any;
   children: (glass: SpriteType, info: GlassInfo) => ReactComponentElement<any>
 }
 
 const Bg = (props: BgProps) => {
-  const texture = Texture.from(BG_CONF.BG_TEXTURE);
-  const glass = Texture.from(BG_CONF.SCREEN_MASK_TEXTURE);
-  const screen = Texture.from(BG_CONF.SCREEN_TEXTURE);
+  const { bgTexture, screenMaskTexture, screenTexture } = props.bundle;
 
   const size = Math.max(props.width, props.height);
   const [screenSprite, setScreenSprite] = React.useState<SpriteType>();
@@ -45,7 +44,7 @@ const Bg = (props: BgProps) => {
       <Sprite
         x={x}
         y={y}
-        texture={texture}
+        texture={bgTexture}
         width={size}
         height={size}
       />
@@ -65,7 +64,7 @@ const Bg = (props: BgProps) => {
                 }}
                 x={glassInfo.position.x}
                 y={glassInfo.position.y}
-                texture={glass}
+                texture={screenMaskTexture}
                 width={glassInfo.width}
                 height={glassInfo.height}
               />
@@ -74,7 +73,7 @@ const Bg = (props: BgProps) => {
             <Sprite
               x={glassInfo.position.x}
               y={glassInfo.position.y}
-              texture={screen}
+              texture={screenTexture}
               width={glassInfo.width}
               height={glassInfo.height}
               alpha={0.5}

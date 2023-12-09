@@ -9,6 +9,8 @@ import {Theme} from "@/app/lib/theme/theme";
 import {useEffect, useState} from "react";
 import Tv from "@/app/ui/Tv";
 import {useFullscreenSize} from "@/app/hooks/useFullscreenSize";
+import {BundleLoader} from "@/app/ui/BundleLoader";
+import {BG_CONF} from "@/app/lib/config/bgConf";
 
 export default function Home() {
   const win = useWindow();
@@ -38,16 +40,23 @@ export default function Home() {
         }}
       >
         <ThemeContext.Provider value={theme}>
-          <Bg
-            width={size.width}
-            height={size.height}
-          >
-            {(glass, glassInfo) => {
-                return (
-                  <Tv glass={glass} glassInfo={glassInfo} />
-                )
+          <BundleLoader bundleId={BG_CONF.BUNDLE_ID} assets={BG_CONF.BUNDLE_ASSETS}>
+            {(bundle) => {
+              return (
+                <Bg
+                  bundle={bundle}
+                  width={size.width}
+                  height={size.height}
+                >
+                  {(glass, glassInfo) => {
+                    return (
+                      <Tv glass={glass} glassInfo={glassInfo} />
+                    )
+                  }}
+                </Bg>
+              )
             }}
-          </Bg>
+          </BundleLoader>
         </ThemeContext.Provider>
       </Stage>
   );
