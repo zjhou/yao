@@ -5,7 +5,7 @@ export const BG_CONF = {
   SCREEN_X: 799,
   SCREEN_Y: 1049,
 
-  BG_TEXTURE: "images/bg.png",
+  BG_TEXTURE: "images/bg.jpg",
   SCREEN_MASK_TEXTURE: "images/glass.png",
   SCREEN_TEXTURE: "images/screen.png"
 }
