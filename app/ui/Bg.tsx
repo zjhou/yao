@@ -3,6 +3,7 @@ import {BLEND_MODES, Sprite as SpriteType, Texture, Graphics as G} from "pixi.js
 import React, {ReactComponentElement} from "react";
 import {Vec} from "@/app/lib/vec";
 import {ScreenContext} from "@/app/context";
+import { BG_CONF } from "@/app/lib/config/bgConf";
 
 export type GlassInfo = {
   position: Vec,
@@ -17,27 +18,26 @@ type BgProps = {
 }
 
 const Bg = (props: BgProps) => {
-  const texture = Texture.from("images/bg.png");
-  const glass = Texture.from("images/glass.png");
-  const screen = Texture.from("images/screen.png");
+  const texture = Texture.from(BG_CONF.BG_TEXTURE);
+  const glass = Texture.from(BG_CONF.SCREEN_MASK_TEXTURE);
+  const screen = Texture.from(BG_CONF.SCREEN_TEXTURE);
 
   const size = Math.max(props.width, props.height);
   const [screenSprite, setScreenSprite] = React.useState<SpriteType>();
-  const [screenRect, setScreenRect] = React.useState<G>();
 
   const y = (props.height - size) / 2;
   const x = (props.width - size) / 2;
 
-  const glassOriginPos = new Vec(799, 1049);
+  const glassOriginPos = new Vec(BG_CONF.SCREEN_X, BG_CONF.SCREEN_Y);
   const offset = new Vec(x, y);
-  const scale = size / 2048;
+  const scale = size / BG_CONF.SIZE;
 
   const glassPos = glassOriginPos.multi(scale).add(offset);
 
   const glassInfo = {
     position: glassPos,
-    width: 484 * scale,
-    height:  340 * scale
+    width: BG_CONF.SCREEN_WID * scale,
+    height:  BG_CONF.SCREEN_HT * scale
   }
 
   return (
