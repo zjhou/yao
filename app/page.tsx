@@ -37,6 +37,7 @@ export default function Home() {
           resizeTo: win,
           antialias: true,
           resolution: devicePixelRatio || 1,
+          backgroundAlpha: 0,
         }}
       >
         <ThemeContext.Provider value={theme}>
