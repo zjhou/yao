@@ -4,10 +4,9 @@ import {useTvScreen} from "@/app/hooks/useTvScreen";
 import {useEffect, useState} from "react";
 
 type VcrProps = {
-  screen: PSprite;
 }
 
-const Vcr = ({ screen }: VcrProps) => {
+const Vcr = () => {
   const videoTexture = Texture.from<VideoResource>("videos/yy.mp4");
   const [scaledSize, setScaledSize] = useState({width: 1, height: 1});
 

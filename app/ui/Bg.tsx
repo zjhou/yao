@@ -15,7 +15,7 @@ type BgProps = {
   width: number;
   height: number;
   bundle: any;
-  children: (glass: SpriteType, info: GlassInfo) => ReactComponentElement<any>
+  children: ReactComponentElement<any>
 }
 
 const Bg = (props: BgProps) => {
@@ -68,7 +68,7 @@ const Bg = (props: BgProps) => {
                 width={glassInfo.width}
                 height={glassInfo.height}
               />
-              {screenSprite && props.children(screenSprite, glassInfo)}
+              {screenSprite ? props.children : null}
             </Container>
             <Sprite
               x={glassInfo.position.x}

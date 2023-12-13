@@ -49,11 +49,7 @@ export default function Home() {
                   width={size.width}
                   height={size.height}
                 >
-                  {(glass, glassInfo) => {
-                    return (
-                      <Tv glass={glass} glassInfo={glassInfo} />
-                    )
-                  }}
+                  <Tv />
                 </Bg>
               )
             }}
