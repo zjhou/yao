@@ -1,16 +1,11 @@
-import {Sprite} from "@pixi/react";
-import {ALPHA_MODES, BLEND_MODES, Sprite as PSprite, Texture, VideoResource} from "pixi.js";
-import {useTvScreen} from "@/app/hooks/useTvScreen";
-import {useEffect, useState} from "react";
-
-type VcrProps = {
-}
+import {Container, Sprite} from "@pixi/react";
+import {Texture, VideoResource} from "pixi.js";
+import {useEffect} from "react";
+import {useTvCtrl} from "@/app/hooks/useTvCtxCtrl";
 
 const Vcr = () => {
   const videoTexture = Texture.from<VideoResource>("videos/yy.mp4");
-  const [scaledSize, setScaledSize] = useState({width: 1, height: 1});
-
-  const screenInfo = useTvScreen();
+  const tvCtrl = useTvCtrl();
 
   videoTexture.baseTexture.resource.source.muted = true;
   videoTexture.baseTexture.resource.source.loop = true;
@@ -19,18 +14,10 @@ const Vcr = () => {
   const handleVideoLoaded = () => {
     const vWidth = videoTexture.width;
     const vHeight = videoTexture.height;
-    const vRatio = vWidth / vHeight;
 
-    const scale =  screenInfo.height / vHeight;
-
-    const svHeight = vHeight * scale;
-    const svWidth = svHeight * vRatio;
-
-    console.log(svHeight, svWidth)
-
-    setScaledSize({
-      width: svWidth,
-      height: svHeight
+    tvCtrl.showContent({
+      width: vWidth,
+      height: vHeight
     })
   }
 
@@ -42,16 +29,14 @@ const Vcr = () => {
     }
   }, []);
 
-  const offset = (screenInfo.width - scaledSize.width) / 2;
   return (
-    <Sprite
-      x={screenInfo.position.x + offset}
-      y={screenInfo.position.y}
-      width={scaledSize.width}
-      height={scaledSize.height}
-      scale={scaledSize.height / videoTexture.height}
-      texture={videoTexture}
-    />
+    <Container
+      {...tvCtrl.containerInfo}
+    >
+      <Sprite
+        texture={videoTexture}
+      />
+    </Container>
   )
 }
 

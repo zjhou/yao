@@ -1,6 +1,6 @@
 import {useApp} from "@pixi/react";
 import {HeartEmitter} from "@/app/lib/heartsSystem/heartEmitter";
-import {useScreenCenterPosForHuman, useTVScreenCenterPos} from "@/app/hooks/useScreenCenterPos";
+import {useTVScreenCenterPos} from "@/app/hooks/useScreenCenterPos";
 import {generateScaledHeartPos} from "@/app/lib/heartsSystem/heartUtils";
 import {useContext, useEffect, useState} from "react";
 import {ThemeContext} from "@/app/context";
@@ -9,7 +9,7 @@ import {Container} from "pixi.js";
 
 export const useHeartShapeEmitterList = (count: number, offset: number, container: Container) => {
   const app = useApp();
-  const {pos: refPos, ready } = useTVScreenCenterPos(container);
+  const {pos: refPos, ready } = useTVScreenCenterPos();
   const [emitterList, setEmitterList] = useState<HeartEmitter[]>([]);
   const theme = useContext(ThemeContext);
 

@@ -3,6 +3,7 @@ import {createContext} from "react";
 import {Theme} from "@/app/lib/theme/theme";
 import {GlassInfo} from "@/app/ui/Bg";
 import {Vec} from "@/app/lib/vec";
+import {TvCtrl} from "@/app/lib/tv";
 
 export const ThemeContext = createContext<Theme>(new Classic());
 export const ScreenContext = createContext<GlassInfo>({
@@ -10,3 +11,5 @@ export const ScreenContext = createContext<GlassInfo>({
   height: 0,
   position: new Vec(0, 0),
 });
+
+export const TvContext = createContext<TvCtrl>({} as TvCtrl);

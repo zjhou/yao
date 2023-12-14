@@ -1,9 +1,9 @@
-import {Container, Sprite, Graphics} from "@pixi/react";
-import {BLEND_MODES, Sprite as SpriteType, Texture, Graphics as G, AssetsBundle} from "pixi.js";
+import {Container, Sprite, useApp} from "@pixi/react";
+import {Sprite as SpriteType} from "pixi.js";
 import React, {ReactComponentElement} from "react";
 import {Vec} from "@/app/lib/vec";
 import {ScreenContext} from "@/app/context";
-import { BG_CONF } from "@/app/lib/config/bgConf";
+import {BG_CONF} from "@/app/lib/config/bgConf";
 
 export type GlassInfo = {
   position: Vec,
@@ -33,6 +33,9 @@ const Bg = (props: BgProps) => {
 
   const glassPos = glassOriginPos.multi(scale).add(offset);
 
+  // @ts-ignore
+  globalThis.__PIXI_APP__ = useApp();
+
   const glassInfo = {
     position: glassPos,
     width: BG_CONF.SCREEN_WID * scale,
@@ -40,7 +43,7 @@ const Bg = (props: BgProps) => {
   }
 
   return (
-    <Container>
+    <Container name="bg container">
       <Sprite
         x={x}
         y={y}
@@ -55,6 +58,7 @@ const Bg = (props: BgProps) => {
           <>
             <Container
               mask={screenSprite}
+              name="mask container"
             >
               <Sprite
                 ref={(ref) => {
@@ -71,6 +75,7 @@ const Bg = (props: BgProps) => {
               {screenSprite ? props.children : null}
             </Container>
             <Sprite
+              name="screen"
               x={glassInfo.position.x}
               y={glassInfo.position.y}
               texture={screenTexture}

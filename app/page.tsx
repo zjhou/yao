@@ -3,11 +3,11 @@
 import {Stage} from "@pixi/react";
 import {useWindow} from "@/app/hooks/useWindow";
 import {Classic, Cream, Sun} from "@/app/lib/theme/colors";
-import {ThemeContext} from "@/app/context";
+import {ThemeContext, TvContext} from "@/app/context";
 import Bg from "@/app/ui/Bg";
 import {Theme} from "@/app/lib/theme/theme";
 import {useEffect, useState} from "react";
-import Tv from "@/app/ui/Tv";
+import Tv, {RemoteControlledTv} from "@/app/ui/Tv";
 import {useFullscreenSize} from "@/app/hooks/useFullscreenSize";
 import {BundleLoader} from "@/app/ui/BundleLoader";
 import {BG_CONF} from "@/app/lib/config/bgConf";
@@ -49,7 +49,7 @@ export default function Home() {
                   width={size.width}
                   height={size.height}
                 >
-                  <Tv />
+                  <RemoteControlledTv />
                 </Bg>
               )
             }}
