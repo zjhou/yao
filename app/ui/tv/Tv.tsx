@@ -1,26 +1,28 @@
-import React, {useEffect} from "react";
-import Channel from "@/app/ui/channels/Channel";
-import {useTvScreen} from "@/app/hooks/tv/useTvScreen";
-import {useTvRemoteCtrl} from "@/app/hooks/tv/useTvRemoteCtrl";
-import {Text} from "@pixi/react";
 import {TvContext} from "@/app/context";
 import {useTvCtrl} from "@/app/hooks/tv/useTvCtxCtrl";
+import {useTvRemoteCtrl} from "@/app/hooks/tv/useTvRemoteCtrl";
+import {useTvScreen} from "@/app/hooks/tv/useTvScreen";
+import Channel from "@/app/ui/channels/Channel";
+import {Text} from "@pixi/react";
+import React, {useEffect} from "react";
 
 const TvCore = () => {
   const screen = useTvScreen();
   const ctrl = useTvCtrl();
 
   useEffect(() => {
+
     ctrl.turnOn();
-
     ctrl.gotoChannel(0);
-  }, [ctrl.tvState]);
 
-  if (screen.width == 0 || screen.height == 0 || ctrl.isOff) {
+  }, [ctrl]);
+
+  if (screen.width === 0 || screen.height === 0 || ctrl.isOff) {
     return;
   }
 
-  console.log("is loading " + ctrl.isLoading)
+  console.log(`is loading ${ctrl.isLoading}`)
+
   return (
     <>
       {

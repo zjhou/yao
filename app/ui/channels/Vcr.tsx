@@ -27,7 +27,7 @@ const Vcr = () => {
     return () => {
       videoTexture.baseTexture.off("loaded", handleVideoLoaded);
     }
-  }, []);
+  }, [handleVideoLoaded, videoTexture.baseTexture]);
 
   return (
     <Container

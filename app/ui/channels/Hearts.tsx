@@ -9,28 +9,29 @@ import {BG_CONF} from "@/app/lib/config/bgConf";
 import {Theme} from "@/app/lib/theme/theme";
 import {Classic, Sun} from "@/app/lib/theme/colors";
 
-const Hearts = ({ container } : any) => {
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const  Hearts = ({ container } : any) => {
   const emitterList = useHeartShapeEmitterList(HeartSysConf.EMITTERS, HeartSysConf.HEART_DIST, container);
 
   useTick(() => {
-    if (emitterList.length == 0) {
+    if (emitterList.length === 0) {
       return;
     }
 
-    emitterList.forEach((emitter) => {
-      emitter.run();
-    })
+    for (const emit of emitterList) {
+      emit.run();
+    }
   })
 
   useEffect(() => {
     return () => {
-      emitterList.forEach((emitter) => {
+      for (const emitter of emitterList) {
         emitter.destroy();
-      })
+      }
     }
   }, [emitterList]);
 
-  if (emitterList.length == 0) {
+  if (emitterList.length === 0) {
     return null;
   }
 
@@ -57,7 +58,7 @@ export const HeartsContainer = () => {
         height: BG_CONF.SCREEN_HT,
       });
     }
-  }, [container]);
+  }, [container, ctrl]);
 
   return (
     <ThemeContext.Provider value={theme}>

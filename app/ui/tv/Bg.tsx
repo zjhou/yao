@@ -14,8 +14,10 @@ export type GlassInfo = {
 type BgProps = {
   width: number;
   height: number;
-  bundle: any;
-  children: ReactComponentElement<any>
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+bundle: any;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+children: ReactComponentElement<any>
 }
 
 const Bg = (props: BgProps) => {
