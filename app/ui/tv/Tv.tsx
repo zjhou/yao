@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
-import Channel from "@/app/ui/Channel";
-import {useTvScreen} from "@/app/hooks/useTvScreen";
-import {useTvRemoteCtrl} from "@/app/hooks/useTvRemoteCtrl";
+import Channel from "@/app/ui/channels/Channel";
+import {useTvScreen} from "@/app/hooks/tv/useTvScreen";
+import {useTvRemoteCtrl} from "@/app/hooks/tv/useTvRemoteCtrl";
 import {Text} from "@pixi/react";
 import {TvContext} from "@/app/context";
-import {useTvCtrl} from "@/app/hooks/useTvCtxCtrl";
+import {useTvCtrl} from "@/app/hooks/tv/useTvCtxCtrl";
 
-const Tv = () => {
+const TvCore = () => {
   const screen = useTvScreen();
   const ctrl = useTvCtrl();
 
@@ -41,12 +41,12 @@ const Tv = () => {
   );
 }
 
-export const RemoteControlledTv = () => {
+export const Tv = () => {
   const ctrl = useTvRemoteCtrl();
 
   return (
     <TvContext.Provider value={ctrl}>
-      <Tv />
+      <TvCore />
     </TvContext.Provider>
   )
 }

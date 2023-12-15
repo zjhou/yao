@@ -1,5 +1,5 @@
-import Vcr from "@/app/ui/Vcr";
-import { HeartsContainer as Hearts } from "@/app/ui/Hearts";
+import Vcr from "@/app/ui/channels/Vcr";
+import { HeartsContainer as Hearts } from "@/app/ui/channels/Hearts";
 
 type ChannelProps = {
   index: number;

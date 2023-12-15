@@ -1,6 +1,6 @@
 import {useApp} from "@pixi/react";
 import {HeartEmitter} from "@/app/lib/heartsSystem/heartEmitter";
-import {useTVScreenCenterPos} from "@/app/hooks/useScreenCenterPos";
+import {useTVScreenCenterPos} from "@/app/hooks/tv/useScreenCenterPos";
 import {generateScaledHeartPos} from "@/app/lib/heartsSystem/heartUtils";
 import {useContext, useEffect, useState} from "react";
 import {ThemeContext} from "@/app/context";

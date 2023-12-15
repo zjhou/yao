@@ -1,6 +1,6 @@
 import {Text} from "@pixi/react";
 import {useCounterPos} from "@/app/hooks/useCounterPos";
-import {useDays} from "@/app/hooks/useDays";
+import {useDays} from "@/app/hooks/utils/useDays";
 import {useContext, useRef} from "react";
 import {ThemeContext} from "@/app/context";
 

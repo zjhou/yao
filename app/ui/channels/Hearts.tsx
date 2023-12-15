@@ -2,9 +2,12 @@ import {useTick, Container} from "@pixi/react";
 import {useHeartShapeEmitterList} from "@/app/hooks/useHeartShapeEmitterList";
 import {HeartSysConf} from "@/app/lib/heartsSystem/HeartSysConf";
 import {useEffect, useState} from "react";
-import {useTvCtrl} from "@/app/hooks/useTvCtxCtrl";
+import {useTvCtrl} from "@/app/hooks/tv/useTvCtxCtrl";
+import {ThemeContext,} from "@/app/context";
 import { Container as CType} from "pixi.js";
 import {BG_CONF} from "@/app/lib/config/bgConf";
+import {Theme} from "@/app/lib/theme/theme";
+import {Classic, Sun} from "@/app/lib/theme/colors";
 
 const Hearts = ({ container } : any) => {
   const emitterList = useHeartShapeEmitterList(HeartSysConf.EMITTERS, HeartSysConf.HEART_DIST, container);
@@ -40,6 +43,13 @@ export const HeartsContainer = () => {
   const ctrl = useTvCtrl();
   const [container, setContainer] = useState<CType>();
 
+  const [theme, setTheme] = useState<Theme>(new Classic());
+
+  useEffect(() => {
+    const theme = new Sun();
+    setTheme(theme);
+  }, []);
+
   useEffect(() => {
     if (container) {
       ctrl.showContent({
@@ -50,6 +60,7 @@ export const HeartsContainer = () => {
   }, [container]);
 
   return (
+    <ThemeContext.Provider value={theme}>
     <Container
       {...ctrl.containerInfo}
       name="hearts com container"
@@ -63,5 +74,6 @@ export const HeartsContainer = () => {
         <Hearts container={container} />
       )}
     </Container>
-  )
+    </ThemeContext.Provider>
+  );
 };

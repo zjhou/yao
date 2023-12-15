@@ -1,5 +1,5 @@
 import {Vec} from "@/app/lib/vec";
-import {useTvScreen} from "@/app/hooks/useTvScreen";
+import {useTvScreen} from "@/app/hooks/tv/useTvScreen";
 
 
 export const useTVScreenCenterPos = () => {

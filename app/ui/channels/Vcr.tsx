@@ -1,7 +1,7 @@
 import {Container, Sprite} from "@pixi/react";
 import {Texture, VideoResource} from "pixi.js";
 import {useEffect} from "react";
-import {useTvCtrl} from "@/app/hooks/useTvCtxCtrl";
+import {useTvCtrl} from "@/app/hooks/tv/useTvCtxCtrl";
 
 const Vcr = () => {
   const videoTexture = Texture.from<VideoResource>("videos/yy.mp4");

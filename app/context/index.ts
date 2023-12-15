@@ -1,7 +1,7 @@
 import {Classic, Cream, Sun} from "@/app/lib/theme/colors";
 import {createContext} from "react";
 import {Theme} from "@/app/lib/theme/theme";
-import {GlassInfo} from "@/app/ui/Bg";
+import {GlassInfo} from "@/app/ui/tv/Bg";
 import {Vec} from "@/app/lib/vec";
 import {TvCtrl} from "@/app/lib/tv";
 

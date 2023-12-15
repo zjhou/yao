@@ -1,4 +1,4 @@
-import {useBundle} from "@/app/hooks/useBundle";
+import {useBundle} from "@/app/hooks/utils/useBundle";
 import * as PIXI from "pixi.js";
 
 type LoaderProps = {

@@ -1,4 +1,4 @@
-import {useWindow} from "@/app/hooks/useWindow";
+import {useWindow} from "@/app/hooks/utils/useWindow";
 import {useEffect, useState} from "react";
 
 export const useFullscreenSize = () => {

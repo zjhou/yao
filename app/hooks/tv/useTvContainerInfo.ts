@@ -1,6 +1,6 @@
 import {TvContainerInfo, Size} from "@/app/lib/tv";
 import {useEffect, useState} from "react";
-import {useTvScreen} from "@/app/hooks/useTvScreen";
+import {useTvScreen} from "@/app/hooks/tv/useTvScreen";
 
 export const useTvContainerInfo = (contentSize: Size) : TvContainerInfo => {
   const [scaledSize, setScaledSize] = useState({width: 1, height: 1});
