@@ -1,6 +1,6 @@
 import {TvContainerInfo, Size} from "@/app/lib/tv";
 import {useEffect, useState} from "react";
-import {useTvScreen} from "@/app/hooks/tv/useTvScreen";
+import {useTvScreen} from "@/app/hooks/tv/view/useTvScreen";
 
 export const useTvContainerInfo = (contentSize: Size) : TvContainerInfo => {
   const [scaledSize, setScaledSize] = useState({width: 1, height: 1});
@@ -20,7 +20,7 @@ export const useTvContainerInfo = (contentSize: Size) : TvContainerInfo => {
       width: svWidth,
       height: svHeight
     });
-  }, [screenInfo.width, screenInfo.height, contentSize.width, contentSize.height]);
+  }, [screenInfo.height, contentSize.width, contentSize.height]);
 
   const offset = (screenInfo.width - scaledSize.width) / 2;
 

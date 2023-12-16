@@ -18,6 +18,7 @@ type BgProps = {
 bundle: any;
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 children: ReactComponentElement<any>
+  showMask: boolean;
 }
 
 const Bg = (props: BgProps) => {
@@ -59,7 +60,7 @@ const Bg = (props: BgProps) => {
         {(glassInfo.position.isAtEdge()) ? null : (
           <>
             <Container
-              mask={screenSprite}
+              mask={props.showMask ? screenSprite : null}
               name="mask container"
             >
               <Sprite

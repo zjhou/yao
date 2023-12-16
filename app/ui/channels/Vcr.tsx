@@ -1,11 +1,12 @@
 import {Container, Sprite} from "@pixi/react";
 import {Texture, VideoResource} from "pixi.js";
 import {useEffect} from "react";
-import {useTvCtrl} from "@/app/hooks/tv/useTvCtxCtrl";
+import {useLocalCtrl} from "@/app/hooks/tv/ctrl/useLocalCtrl";
+import {useContentSizeCtrl} from "@/app/hooks/tv/view/useContentSizeCtrl";
 
 const Vcr = () => {
   const videoTexture = Texture.from<VideoResource>("videos/yy.mp4");
-  const tvCtrl = useTvCtrl();
+  const { showContent, containerInfo } = useContentSizeCtrl();
 
   videoTexture.baseTexture.resource.source.muted = true;
   videoTexture.baseTexture.resource.source.loop = true;
@@ -15,7 +16,7 @@ const Vcr = () => {
     const vWidth = videoTexture.width;
     const vHeight = videoTexture.height;
 
-    tvCtrl.showContent({
+    showContent({
       width: vWidth,
       height: vHeight
     })
@@ -31,7 +32,7 @@ const Vcr = () => {
 
   return (
     <Container
-      {...tvCtrl.containerInfo}
+      {...containerInfo}
     >
       <Sprite
         texture={videoTexture}

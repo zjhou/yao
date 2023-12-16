@@ -2,12 +2,13 @@ import {useTick, Container} from "@pixi/react";
 import {useHeartShapeEmitterList} from "@/app/hooks/useHeartShapeEmitterList";
 import {HeartSysConf} from "@/app/lib/heartsSystem/HeartSysConf";
 import {useEffect, useState} from "react";
-import {useTvCtrl} from "@/app/hooks/tv/useTvCtxCtrl";
+import {useLocalCtrl} from "@/app/hooks/tv/ctrl/useLocalCtrl";
 import {ThemeContext,} from "@/app/context";
 import { Container as CType} from "pixi.js";
 import {BG_CONF} from "@/app/lib/config/bgConf";
 import {Theme} from "@/app/lib/theme/theme";
 import {Classic, Sun} from "@/app/lib/theme/colors";
+import {useContentSizeCtrl} from "@/app/hooks/tv/view/useContentSizeCtrl";
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const  Hearts = ({ container } : any) => {
@@ -41,9 +42,9 @@ const  Hearts = ({ container } : any) => {
 }
 
 export const HeartsContainer = () => {
-  const ctrl = useTvCtrl();
+  const ctrl = useLocalCtrl();
   const [container, setContainer] = useState<CType>();
-
+  const { showContent, containerInfo } = useContentSizeCtrl();
   const [theme, setTheme] = useState<Theme>(new Classic());
 
   useEffect(() => {
@@ -51,19 +52,20 @@ export const HeartsContainer = () => {
     setTheme(theme);
   }, []);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (container) {
-      ctrl.showContent({
+      showContent({
         width: BG_CONF.SCREEN_WID,
         height: BG_CONF.SCREEN_HT,
       });
     }
-  }, [container, ctrl]);
+  }, [container]);
 
   return (
     <ThemeContext.Provider value={theme}>
     <Container
-      {...ctrl.containerInfo}
+      {...containerInfo}
       name="hearts com container"
       ref={(c) => {
         if (c) {

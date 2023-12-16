@@ -1,18 +1,11 @@
 import {useCallback, useState} from "react";
 import {Size, TvCtrl, TvState} from "@/app/lib/tv";
 import {BG_CONF} from "@/app/lib/config/bgConf";
-import {useTvContainerInfo} from "@/app/hooks/tv/useTvContainerInfo";
+import {useTvContainerInfo} from "@/app/hooks/tv/view/useTvContainerInfo";
 
-export const useTvRemoteCtrl = () : TvCtrl => {
+export const useTvState = () : TvCtrl => {
   const [tvState, setTvState] = useState<TvState>(TvState.Off)
   const [channel, setChannel] = useState<number>(-1)
-
-  const [contentSize, setContentSize] = useState<Size>({
-    width: BG_CONF.SCREEN_WID,
-    height: BG_CONF.SCREEN_HT,
-  })
-
-  const containerInfo = useTvContainerInfo(contentSize);
 
   const turnOn = () => setTvState(TvState.On);
   const turnOff = () => setTvState(TvState.Off);
@@ -38,11 +31,6 @@ export const useTvRemoteCtrl = () : TvCtrl => {
     }
   }, []);
 
-  const showContent = useCallback((size: Size) => {
-    setContentSize(size)
-    loading(false);
-  }, []);
-
   const isOff = tvState === TvState.Off
 
   const isLoading = tvState === TvState.Loading
@@ -50,16 +38,14 @@ export const useTvRemoteCtrl = () : TvCtrl => {
   const isChannelSelected = channel !== -1;
 
 
-  return {
+  return <TvCtrl>{
     tvState,
     channel,
-    containerInfo,
 
     isOff,
     isLoading,
     isChannelSelected,
 
-    showContent,
     turnOn,
     turnOff,
     gotoChannel,

@@ -1,5 +1,10 @@
 import Vcr from "@/app/ui/channels/Vcr";
 import { HeartsContainer as Hearts } from "@/app/ui/channels/Hearts";
+import {useState} from "react";
+import {Size} from "@/app/lib/tv";
+import {BG_CONF} from "@/app/lib/config/bgConf";
+import {useTvContainerInfo} from "@/app/hooks/tv/view/useTvContainerInfo";
+import {useLocalCtrl} from "@/app/hooks/tv/ctrl/useLocalCtrl";
 
 type ChannelProps = {
   index: number;

@@ -1,8 +1,8 @@
 export enum TvState {
-  Off,
-  On,
-  Loading,
-  Playing,
+  Off = 0,
+  On = 1,
+  Loading = 2,
+  Playing = 3,
 }
 
 export type Size = {
@@ -21,13 +21,11 @@ export type TvContainerInfo = {
 export type TvCtrl = {
   tvState: TvState,
   channel: number,
-  containerInfo: TvContainerInfo,
 
   isOff: boolean,
   isLoading: boolean,
   isChannelSelected: boolean,
 
-  showContent: (size: Size) => void,
   turnOn: () => void,
   turnOff: () => void,
   gotoChannel: (channelNum: number) => void,
