@@ -1,4 +1,4 @@
-import {BBTV} from "@/app/lib/tv/bbtvStation";
+import {BBTV} from "@/app/lib/tvStation/bbtvStation";
 import {TVStation} from "@/app/types/tvTypes";
 
 export const StationMap: {[key: number]: TVStation } = {

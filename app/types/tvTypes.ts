@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 
 export enum ContentType {
   Video = 0,
@@ -8,22 +8,27 @@ export enum ContentType {
 }
 
 export type ImageShow = {
-  source: string | string[],
+  source: string,
   durationSec: number
 }
 
 export type VideoShow = {
-  source: string | string[],
+  source: string,
 }
 
 export type CustomShow = {
-  source: React.JSX.Element
+  source: FC
 }
 
-export type ShowContent = ImageShow | VideoShow | CustomShow
+export type TextShow = {
+  source: string
+}
+
+export type ShowContent = ImageShow | VideoShow | CustomShow | TextShow
 
 export interface TVShow {
-  type: ContentType,
+  id: number
+  type: ContentType
   content: ShowContent
 }
 
@@ -31,14 +36,17 @@ export interface TVSchedule {
   startTime: string
   endTime: string
   show: TVShow
+  isActive: () => boolean
 }
 
 export interface TVChannel {
   num: number,
-  schedules: TVSchedule[]
+  schedules: TVSchedule[],
+  getCurrentShow: () => TVShow | undefined
 }
 
 export interface TVStation {
+  subscribe: (onShowChange: (show: TVShow | undefined) => void) => void;
   channel: TVChannel
   logo?: string
 }
