@@ -9,12 +9,21 @@ export const useSignal = () => {
   const tvLocalCtrl = useLocalCtrl();
   const socket = useTvConnection();
 
+  console.log(socket)
+
   useEffect(() => {
     socket?.on('turnOn', () => {
+      console.log("signal received: turn on")
       tvLocalCtrl.turnOn();
     });
 
+    socket?.on('turnOff', () => {
+      console.log("signal received: turn off")
+      tvLocalCtrl.turnOff();
+    });
+
     socket?.on('gotoChannel', (num) => {
+      console.log(`signal received: gotoChannel ${num}`);
       tvLocalCtrl.gotoChannel(num);
     })
 

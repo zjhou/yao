@@ -1,10 +1,11 @@
-import {Texture, VideoResource} from "pixi.js";
+import {BLEND_MODES, ColorSource, Texture, VideoResource} from "pixi.js";
 import {useContentSizeCtrl} from "@/app/hooks/tv/view/useContentSizeCtrl";
-import {useCallback, useEffect} from "react";
+import React, {useEffect} from "react";
 import {Container, Sprite} from "@pixi/react";
+import {useMount} from "@/app/hooks/utils/useMount";
 
 export type ImgViewerProps = {
-  source: string
+  source: string,
 }
 
 export const ImgViewer = (props: ImgViewerProps) => {
@@ -21,14 +22,13 @@ export const ImgViewer = (props: ImgViewerProps) => {
     })
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
+  useMount(() => {
+    handleVideoLoaded();
     imgTexture.baseTexture.on("loaded", handleVideoLoaded);
-
     return () => {
       imgTexture.baseTexture.off("loaded", handleVideoLoaded);
     }
-  }, []);
+  });
 
   return (
     <Container

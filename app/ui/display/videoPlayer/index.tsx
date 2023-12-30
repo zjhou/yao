@@ -2,6 +2,7 @@ import {Texture, VideoResource} from "pixi.js";
 import {useContentSizeCtrl} from "@/app/hooks/tv/view/useContentSizeCtrl";
 import {useEffect} from "react";
 import {Container, Sprite} from "@pixi/react";
+import {useMount} from "@/app/hooks/utils/useMount";
 
 export type VideoPlayerProps = {
   source: string;
@@ -25,13 +26,13 @@ export const VideoPlayer = (props: VideoPlayerProps) => {
     })
   }
 
-  useEffect(() => {
+  useMount(() => {
     videoTexture.baseTexture.on("loaded", handleVideoLoaded);
-
+    handleVideoLoaded();
     return () => {
       videoTexture.baseTexture.off("loaded", handleVideoLoaded);
     }
-  }, [handleVideoLoaded, videoTexture.baseTexture]);
+  });
 
   return (
     <Container

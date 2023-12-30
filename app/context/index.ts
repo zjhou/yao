@@ -3,9 +3,9 @@ import {createContext} from "react";
 import {Theme} from "@/app/lib/theme/theme";
 import {GlassInfo} from "@/app/ui/tv/Bg";
 import {Vec} from "@/app/lib/vec";
-import {TvCtrl} from "@/app/lib/tv";
 import {type Socket} from "socket.io-client";
 import {ClientToServerEvents, ServerToClientEvents} from "@/app/types/socketCustomTypes";
+import {TvCtrl} from "@/app/types/tvTypes";
 
 export const ThemeContext = createContext<Theme>(new Classic());
 export const ScreenContext = createContext<GlassInfo>({

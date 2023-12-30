@@ -60,7 +60,7 @@ const Bg = (props: BgProps) => {
           <>
             <Container
               mask={props.showMask ? screenSprite : null}
-             name="mask container"
+              name="mask container"
             >
               <Sprite
                 ref={(ref) => {

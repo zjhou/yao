@@ -1,7 +1,7 @@
 import {useCallback, useState} from "react";
-import {Size, TvCtrl, TvState} from "@/app/lib/tv";
 import {BG_CONF} from "@/app/lib/config/bgConf";
 import {useTvContainerInfo} from "@/app/hooks/tv/view/useTvContainerInfo";
+import {Size, TvCtrl, TvState} from "@/app/types/tvTypes";
 
 export const useTvState = () : TvCtrl => {
   const [tvState, setTvState] = useState<TvState>(TvState.Off)

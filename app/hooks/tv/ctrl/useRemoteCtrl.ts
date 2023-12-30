@@ -8,7 +8,6 @@ export const useRemoteCtrl = () => {
   const socket = useTvConnection();
 
   const turnOn = useCallback(() => {
-    console.log(socket);
     socket?.emit("turnOn");
   }, [socket])
 

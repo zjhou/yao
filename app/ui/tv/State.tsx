@@ -1,9 +1,9 @@
 import {ConnectionContext, TvContext} from "@/app/context";
 import {useSocket} from "@/app/hooks/tv/ctrl/useSocket";
 import {useTvState} from "@/app/hooks/tv/ctrl/useTvState";
-import React from "react";
+import React, {ReactNode} from "react";
 
-export const TvState = ({ children }: { children: React.JSX.Element | React.JSX.Element[] }) => {
+export const TvState = ({ children }: { children: React.JSX.Element | React.JSX.Element[] | ReactNode }) => {
   const state = useTvState();
   const socket = useSocket();
 

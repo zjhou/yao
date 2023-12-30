@@ -1,20 +1,29 @@
 import {useTvScreen} from "@/app/hooks/tv/view/useTvScreen";
-import {VideoPlayer} from "../display/videoPlayer";
-import {TextViewer} from "@/app/ui/display/textViewer";
-import {ImgViewer} from "@/app/ui/display/imgViewer";
+import {useLocalCtrl} from "@/app/hooks/tv/ctrl/useLocalCtrl";
+import {useSignal} from "@/app/hooks/tv/ctrl/useSignal";
+import {useTvStation} from "@/app/hooks/tv/station";
+import {TvDisplay} from "@/app/ui/display";
 
 export const Tv = () => {
   const screen = useTvScreen();
-  if (screen.width === 0 || screen.height === 0) {
+  const ctrl = useLocalCtrl();
+  const tvStation = useTvStation(ctrl.channel);
+
+  useSignal();
+
+  if (screen.width === 0 || screen.height === 0 || ctrl.isOff) {
     console.log("tv is not ready")
     return;
   }
 
-  console.log("tv is Ready")
+  if (!ctrl.isChannelSelected) {
+    console.log("tv is waiting")
+    return;
+  }
 
   return (
-    <VideoPlayer source="videos/yy.mp4" />
-    // <TextViewer text="hello world and foo bar baz" />
-    // <ImgViewer source="images/rocks.JPG" />
+    <TvDisplay
+      station={tvStation}
+    />
   );
 }

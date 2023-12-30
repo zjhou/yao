@@ -32,7 +32,8 @@ export default async function GET(
     });
 
     socket.on("turnOff", () => {
-      socket.emit("turnOff");
+      console.log("server received turn off event");
+      socket.broadcast.emit("turnOff");
     });
 
     socket.on("disconnect", () => {
