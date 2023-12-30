@@ -15,9 +15,8 @@ type BgProps = {
   width: number;
   height: number;
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-bundle: any;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-children: ReactComponentElement<any>
+  bundle: any;
+  children: React.JSX.Element | React.JSX.Element[],
   showMask: boolean;
 }
 
@@ -61,7 +60,7 @@ const Bg = (props: BgProps) => {
           <>
             <Container
               mask={props.showMask ? screenSprite : null}
-              name="mask container"
+             name="mask container"
             >
               <Sprite
                 ref={(ref) => {

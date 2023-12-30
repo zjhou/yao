@@ -19,7 +19,15 @@ export const useContentSizeCtrl = () => {
     ctrl.loading(false);
   };
 
+  const defaultReady = () => {
+    setContentSize({
+      width: BG_CONF.SCREEN_WID,
+      height: BG_CONF.SCREEN_HT,
+    })
+  }
+
   return {
+    defaultReady,
     showContent,
     containerInfo,
   }

@@ -1,5 +1,5 @@
 'use client'
 
-import PixiApp from "@/app/ui/PixiApp";
+import App from "@/app/ui/App";
 
-export default PixiApp;
+export default App;

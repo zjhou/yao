@@ -8,6 +8,9 @@ dependencies:
   '@pixi/react':
     specifier: ^7.1.1
     version: 7.1.1(@babel/runtime@7.23.2)(@pixi/app@7.3.2)(@pixi/constants@7.3.2)(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/extensions@7.3.2)(@pixi/graphics@7.3.2)(@pixi/math@7.3.2)(@pixi/mesh-extras@7.3.2)(@pixi/mesh@7.3.2)(@pixi/particle-container@7.3.2)(@pixi/sprite-animated@7.3.2)(@pixi/sprite-tiling@7.3.2)(@pixi/sprite@7.3.2)(@pixi/text-bitmap@7.3.2)(@pixi/text@7.3.2)(@pixi/ticker@7.3.2)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+  geist:
+    specifier: ^1.2.0
+    version: 1.2.0(next@14.0.3)
   next:
     specifier: 14.0.3
     version: 14.0.3(react-dom@18.2.0)(react@18.2.0)
@@ -2063,6 +2066,14 @@ packages:
   /functions-have-names@1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: true
+
+  /geist@1.2.0(next@14.0.3):
+    resolution: {integrity: sha512-RZsgCkGnSi1IV1Ozg3s6Ou4r/jzLff9+47ChjpJ5yX8ncEC/RwdStGwhdFzDcnSv0xU0+9J/fTX5Kht0NajTXA==}
+    peerDependencies:
+      next: ^13.2 || ^14
+    dependencies:
+      next: 14.0.3(react-dom@18.2.0)(react@18.2.0)
+    dev: false
 
   /get-intrinsic@1.2.2:
     resolution: {integrity: sha512-0gSo4ml/0j98Y3lngkFEot/zhiCeWsbYIlZ+uZOVgzLyLaUw7wxUL+nCTP0XJvJg1AXulJRI3UJi8GsbDuxdGA==}
