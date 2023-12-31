@@ -1,6 +1,7 @@
 import {Container, Text} from "@pixi/react";
 import {useRemoteCtrl} from "@/app/hooks/tv/ctrl/useRemoteCtrl";
-import {BBTV} from "@/app/lib/tvStation/bbtvStation";
+
+import {Station} from "@/app/lib/tvStation/station";
 
 export const RemoteCtrl = () => {
   const ctrl = useRemoteCtrl();
@@ -9,7 +10,7 @@ export const RemoteCtrl = () => {
       <Text
         interactive
         onpointerdown={() => {
-          ctrl.gotoChannel(BBTV.Inst.channel.num);
+          ctrl.gotoChannel(0);
         }}
         text="TURN ON"
       />

@@ -1,4 +1,5 @@
 import React, {FC} from "react";
+import exp from "node:constants";
 
 export enum ContentType {
   Video = 0,
@@ -47,6 +48,7 @@ export interface TVChannel {
 
 export interface TVStation {
   subscribe: (onShowChange: (show: TVShow | undefined) => void) => void;
+  unsubscribe: () => void;
   channel: TVChannel
   logo?: string
 }
@@ -82,4 +84,23 @@ export type TvCtrl = {
   turnOff: () => void,
   gotoChannel: (channelNum: number) => void,
   loading: (isLoading: boolean) => void,
+}
+
+export type StationObj = {
+  num: number;
+  schedules: ScheduleObj[];
+}
+
+export type ScheduleObj = {
+  start: string;
+  end: string;
+  show: {
+    type: number;
+    id: number;
+    source: string;
+  };
+}
+
+export type StationResponse = {
+  payload: StationObj[];
 }

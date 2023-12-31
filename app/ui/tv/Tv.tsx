@@ -4,7 +4,7 @@ import {useSignal} from "@/app/hooks/tv/ctrl/useSignal";
 import {TvDisplay} from "@/app/ui/display";
 import {useEffect, useState} from "react";
 import {TVShow} from "@/app/types/tvTypes";
-import {StationMap} from "@/app/lib/tvStation/stationData";
+import {StationFactory} from "@/app/lib/tvStation/stationFactory";
 
 export const Tv = () => {
   const screen = useTvScreen();
@@ -15,8 +15,12 @@ export const Tv = () => {
 
   useEffect(() => {
     console.log("try station subscribe")
-    const tvStation = StationMap[ctrl.channel];
+    const tvStation = StationFactory.Inst.get(ctrl.channel)
     tvStation?.subscribe(setShow);
+
+    return () => {
+      tvStation?.unsubscribe();
+    }
   }, [ctrl.channel])
 
   if (screen.width === 0 || screen.height === 0 || ctrl.isOff) {

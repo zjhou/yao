@@ -1,0 +1,27 @@
+{
+  "payload": [
+    {
+      "num": 0,
+      "schedules": [
+        {
+          "start": "00:00",
+          "end": "12:00",
+          "show": {
+            "type": 0,
+            "id": 0,
+            "source": "videos/yy.mp4"
+          }
+        },
+        {
+          "start": "12:00",
+          "end": "23:00",
+          "show": {
+            "type": 1,
+            "id": 1,
+            "source": "images/rocks.JPG"
+          }
+        }
+      ]
+    }
+  ]
+}
