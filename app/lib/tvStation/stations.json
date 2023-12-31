@@ -1,17 +1,8 @@
 {
   "payload": [
     {
-      "num": 0,
+      "num": 1,
       "schedules": [
-        {
-          "start": "00:00",
-          "end": "12:00",
-          "show": {
-            "type": 0,
-            "id": 0,
-            "source": "videos/yy.mp4"
-          }
-        },
         {
           "start": "12:00",
           "end": "23:00",
@@ -19,6 +10,34 @@
             "type": 1,
             "id": 1,
             "source": "images/rocks.JPG"
+          }
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "schedules": [
+        {
+          "start": "00:00",
+          "end": "23:59",
+          "show": {
+            "type": 0,
+            "id": 2,
+            "source": "videos/river.mp4"
+          }
+        }
+      ]
+    },
+    {
+      "num": 3,
+      "schedules": [
+        {
+          "start": "00:00",
+          "end": "23:59",
+          "show": {
+            "type": 0,
+            "id": 0,
+            "source": "videos/yy.mp4"
           }
         }
       ]

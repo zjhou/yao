@@ -10,7 +10,7 @@ export const RemoteCtrl = () => {
       <Text
         interactive
         onpointerdown={() => {
-          ctrl.gotoChannel(0);
+          ctrl.gotoChannel(1);
         }}
         text="TURN ON"
       />
@@ -21,6 +21,30 @@ export const RemoteCtrl = () => {
           ctrl.turnOff();
         }}
         text="TURN OFF"
+      />
+      <Text
+        y={100}
+        interactive
+        onpointerdown={() => {
+          ctrl.gotoChannel(1)
+        }}
+        text="CHANNEL 1"
+      />
+      <Text
+        y={150}
+        interactive
+        onpointerdown={() => {
+          ctrl.gotoChannel(2)
+        }}
+        text="CHANNEL 2"
+      />
+      <Text
+        y={200}
+        interactive
+        onpointerdown={() => {
+          ctrl.gotoChannel(3)
+        }}
+        text="CHANNEL 3"
       />
     </Container>
   )
