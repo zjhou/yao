@@ -1,9 +1,9 @@
 import {Color, TextStyle} from "pixi.js";
 import {Theme} from "@/app/lib/theme/theme";
 
-const ColorNums = {
+export const ColorNums = {
   HEART_LINE_COLOR: 0xfb5d63,
-  HEART_COLOR: 0xfb0000,
+  HEART_COLOR: 0xff3333,
   STAGE_BG_COLOR: 0xfbc05e,
 }
 

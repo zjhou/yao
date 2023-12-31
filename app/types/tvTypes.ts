@@ -10,7 +10,6 @@ export enum ContentType {
 
 export type ImageShow = {
   source: string,
-  durationSec: number
 }
 
 export type VideoShow = {
@@ -18,7 +17,7 @@ export type VideoShow = {
 }
 
 export type CustomShow = {
-  source: FC
+  source: string
 }
 
 export type TextShow = {

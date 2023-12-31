@@ -4,6 +4,7 @@ import {ImgViewer} from "@/app/ui/display/imgViewer";
 import {TextViewer} from "@/app/ui/display/textViewer";
 import {VideoPlayer} from "@/app/ui/display/videoPlayer";
 import React, {FC} from "react";
+import {CustomContentViewer} from "@/app/ui/display/customContentViewer";
 
 type TvDisplayProps = {
   tvShow: TVShow
@@ -31,12 +32,7 @@ export const TvDisplay = (props: TvDisplayProps) => {
   }
 
   if (tvShow.type === ContentType.Custom) {
-    const Content = tvShow.content.source as FC;
-    return (
-      <BaseContainer>
-        <Content />
-      </BaseContainer>
-    )
+    return <CustomContentViewer source={tvShow.content.source as string} />
   }
 
   return null;

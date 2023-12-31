@@ -18,7 +18,7 @@ const parseDate = (dateString: string) => {
   return time;
 }
 
-export const timer = () => {
+export const timer = (digits = 10) => {
   const start = parseDate(CounterConf.start);
   const now = Date.now();
   const diff = now - start;
@@ -26,7 +26,7 @@ export const timer = () => {
   const days = Math.floor(diff / dayInMs);
   return {
     days,
-    timeStr: `${(diff / dayInMs).toFixed(10)} DAYS`,
+    timeStr: `${(diff / dayInMs).toFixed(digits)} DAYS`,
   }
 }
 

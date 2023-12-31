@@ -36,8 +36,22 @@
           "end": "23:59",
           "show": {
             "type": 0,
-            "id": 0,
+            "id": 3,
             "source": "videos/yy.mp4"
+          }
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "schedules": [
+        {
+          "start": "00:00",
+          "end": "23:59",
+          "show": {
+            "type": 3,
+            "id": 4,
+            "source": "counter"
           }
         }
       ]

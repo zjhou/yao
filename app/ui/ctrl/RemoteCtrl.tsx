@@ -46,6 +46,14 @@ export const RemoteCtrl = () => {
         }}
         text="CHANNEL 3"
       />
+      <Text
+        y={250}
+        interactive
+        onpointerdown={() => {
+          ctrl.gotoChannel(4)
+        }}
+        text="CHANNEL 4"
+      />
     </Container>
   )
 }
