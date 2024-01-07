@@ -2,6 +2,8 @@ import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import TvStage from "@/app/ui/tv/TvStage";
+import {Nav} from "@/app/ui/nav/Nav";
+import '@/pages/globals.css'
 
 // biome-ignore lint/complexity/noBannedTypes: <explanation>
 export  type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -17,7 +19,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
-    <TvStage>
+    <TvStage
+      // nav={<Nav />}
+    >
       {getLayout(<Component {...pageProps} />)}
     </TvStage>
   )

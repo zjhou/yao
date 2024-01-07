@@ -5,7 +5,7 @@
       "schedules": [
         {
           "start": "12:00",
-          "end": "23:00",
+          "end": "23:59",
           "show": {
             "type": 1,
             "id": 1,
